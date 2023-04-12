@@ -8,11 +8,11 @@ app.use(express.json());
 
 app.post('/', (req, res) => {
         const { name, email, message } = req.body;
-        const { EMAIL, USER, PASSWORD, NODE_ENV } = process.env;
+        const { EMAIL_DESTINATION, USER, PASSWORD, NODE_ENV } = process.env;
 
         const mailOptions = {
             from: email,
-            to: EMAIL,
+            to: EMAIL_DESTINATION,
             subject: 'New message from your portfolio',
             text: message
         };
@@ -27,7 +27,6 @@ app.post('/', (req, res) => {
                 }
             });
         } else {
-            console.log({ EMAIL: USER, PASSWORD, NODE_ENV })
             transporter = nodemailer.createTransport({
                 host: "sandbox.smtp.mailtrap.io",
                 port: 2525,
