@@ -1,20 +1,26 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3333;
 const nodemailer = require("nodemailer");
+const cors = require('cors');
 require('dotenv').config();
 
 app.use(express.json());
+const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+
+app.use(cors({
+    origin: frontendUrl
+}));
 
 app.post('/', (req, res) => {
-        const { name, email, message } = req.body;
-        const { EMAIL_DESTINATION, USER, PASSWORD, NODE_ENV } = process.env;
+        const {name, email, message} = req.body;
+        const {EMAIL_DESTINATION, USER, PASSWORD, NODE_ENV} = process.env;
 
         const mailOptions = {
             from: email,
             to: EMAIL_DESTINATION,
             subject: 'New message from your portfolio',
-            text: message
+            text: `${ message } \n\n From: ${ name } \n Email: ${ email }`
         };
 
         let transporter;
