@@ -13,7 +13,7 @@ app.use(cors({
     origin: frontendUrl
 }));
 
-app.post('/',  checkFormat, (req, res) => {
+app.post('/portfolio',  checkFormat, (req, res) => {
         const {name, email, message} = req.body;
         const {EMAIL_DESTINATION, USER, PASSWORD, NODE_ENV} = process.env;
 
