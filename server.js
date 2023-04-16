@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.PORT || 3333;
 const nodemailer = require("nodemailer");
 const cors = require('cors');
+const {checkFormat} = require("./middlewares/checkFormat");
 require('dotenv').config();
 
 app.use(express.json());
@@ -12,7 +13,7 @@ app.use(cors({
     origin: frontendUrl
 }));
 
-app.post('/', (req, res) => {
+app.post('/',  checkFormat, (req, res) => {
         const {name, email, message} = req.body;
         const {EMAIL_DESTINATION, USER, PASSWORD, NODE_ENV} = process.env;
 
