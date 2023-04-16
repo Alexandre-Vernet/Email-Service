@@ -1,8 +1,8 @@
 {
     "name": "email",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "description": "Web-server for sending emails",
+    "main": "server.js",
     "scripts": {
         "start": "node server.js",
         "dev-start": "nodemon server.js"
