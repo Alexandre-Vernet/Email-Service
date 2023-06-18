@@ -59,7 +59,6 @@ const confirmOrder = (order, user) => {
             <p class="order-info">Thank you for placing your order on our e-commerce website. We are delighted to have you as our customer and would like to inform you that your order has been successfully confirmed.</p>
             <p class="order-info">Here are the details of your order:</p>
             <p class="order-info">Order Number: <span class="order-number">${ order.id }</span></p>
-            <p class="order-info">Order Date: ${ convertDate(order.createdAt) }</p>
             <p class="order-info">Order Total: ${ order.totalPrice } €</p>
         </div>
     </div>
@@ -68,11 +67,4 @@ const confirmOrder = (order, user) => {
 </html>
 `
 };
-
-const convertDate = (date) => {
-    const dateObject = new Date(date);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return dateObject.toLocaleDateString('fr-FR', options);
-}
-
 module.exports = confirmOrder;
